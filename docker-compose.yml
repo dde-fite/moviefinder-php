@@ -1,8 +1,8 @@
 services:
   web:
     build: .
-    # ports:
-    #   - "8080:80"
+    ports:
+      - '8080:80'
     environment:
       DB_HOST: mariadb
       DB_PORT: 3306
@@ -12,7 +12,9 @@ services:
     volumes:
       - public-images:/var/www/html/img
     depends_on:
-    - mariadb
+      - mariadb
+    networks:
+      - backend-network
 
   mariadb:
     image: mariadb
@@ -23,7 +25,13 @@ services:
       MARIADB_PASSWORD: ckrbyhrs1cmqx67emsc9dyy803bh9dr31c1cwg16h3btcfj03c
     volumes:
       - mariadb-data:/var/lib/mysql
+    networks:
+      - backend-network
 
 volumes:
   public-images:
   mariadb-data:
+
+networks:
+  backend-network:
+    driver: bridge
