@@ -1,19 +1,11 @@
 <?php
+$hostname   = getenv('DB_HOST');
+$port		= getenv('DB_PORT') ?: 3306;
+$database   = getenv('DB_NAME');
+$username   = getenv('DB_USER');
+$password   = getenv('DB_PASSWORD');
 
-$hostname = getenv('DB_HOST');
-$database = getenv('DB_NAME');
-$username = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
-
-if (!$hostname || !$database || !$username) {
-    throw new RuntimeException("Variables de entorno DB_HOST, DB_NAME, DB_USER (y DB_PASSWORD) deben estar definidas.");
-}
-
-$hostParts = explode(':', $hostname, 2);
-$hostOnly = $hostParts[0];
-$port = isset($hostParts[1]) ? (int)$hostParts[1] : 3306;
-
-$mysqliRoot = new mysqli($hostOnly, $username, $password, null, $port);
+$mysqliRoot = new mysqli($hostname, $username, $password, null, $port);
 if ($mysqliRoot->connect_errno) {
     throw new RuntimeException("Error de conexión MySQL: " . $mysqliRoot->connect_error);
 }
@@ -25,7 +17,7 @@ if (!$mysqliRoot->query($createDbSql)) {
 }
 $mysqliRoot->close();
 
-$mysqli = new mysqli($hostOnly, $username, $password, $database, $port);
+$mysqli = new mysqli($hostname, $username, $password, $database, $port);
 if ($mysqli->connect_errno) {
     throw new RuntimeException("Error conectando a la BD específica: " . $mysqli->connect_error);
 }
