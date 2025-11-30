@@ -137,13 +137,13 @@ include ('includes/adminbar.php')
                                     <button type="submit" name="vote" value="1">
                                         <img src="img/arrow-up.png" class="size-9 m-2">
                                     </button>
-                                    
+
                                     <p class="text-6xl font-bold text-center">' . $fila['score'] . '</p>
-                                    
+
                                     <button type="submit" name="vote" value="-1">
                                         <img src="img/arrow-down.png" class="size-9 m-2">
                                     </button>
-                                
+
                                 </form>
                             ';
                         } else {
@@ -171,7 +171,7 @@ include ('includes/adminbar.php')
                         </div>
                         <h2 class="text-3xl font-bold">' . $fila['title'] . '</h2>
                         <p class="text-xl font-normal">' . $fila['year'] . '</p>
-                         <div class="mb-2">
+                        <div class="mb-2">
                             <h3 class="text-2xl font-semibold mt-4">Synopsis</h3>
                             <p class="text-base">
                                 ' . $fila['description'] . '
@@ -181,7 +181,7 @@ include ('includes/adminbar.php')
                             <div>
                                 <p class="text-lg font-semibold mb-2">Genre: <span class="font-normal">' . $fila['genre'] . '</span></p>
                                 <p class="text-lg font-semibold mb-2">Country: <span class="font-normal">' . $fila['country'] . '</span>
-                        
+
                                 <img
                                 src="https://flagcdn.com/64x48/' . $codigo . '.png"
                                 srcset="https://flagcdn.com/128x96/' . $codigo . '.png 2x,
@@ -194,7 +194,7 @@ include ('includes/adminbar.php')
                                 <p class="text-lg font-semibold mt-4 mb-10">Age: <span class="font-normal">' . $fila['age'] . '</span>
                                 <img style="height:48px;"  src="img/edad-' . $fila['age'] . '.png">
                                 </p>
-                                
+
                                 <p class="text-lg font-semibold mt-4">Director: <span class="font-normal"><a href="index.php?director=' . $fila['director'] . '">' . $fila['director'] . '</a></span></p>
                         ';
 
@@ -235,7 +235,7 @@ include ('includes/adminbar.php')
                                     <img
                                         src="img/ads/' . $filaAd['url'] . '"
                                         alt="Imagen de Pelicula ' . $filaAd['adname'] . '"
-                                        class="rounded-lg object-cover w-9/12 aspect-[3/4] group-hover:opacity-50 transition-opacity"
+                                        class="rounded-lg object-cover w-9/12 max-w-sm max-h-96 aspect-[3/4] group-hover:opacity-50 transition-opacity"
                                     />
                                     <div class="grid gap-1">
                                         <h3 class="font-semibold">' . $filaAd['adname'] . '</h3>
@@ -251,13 +251,13 @@ include ('includes/adminbar.php')
                     </div>';
 
                         echo '
-                        <iframe 
+                        <iframe
                         class="mt-20"
-                        width="560" 
-                        height="315" 
-                        src="https://www.youtube.com/embed/' . $fila['link'] . '" 
-                        title="YouTube video player" 
-                        frameborder="0" 
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/' . $fila['link'] . '"
+                        title="YouTube video player"
+                        frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                         </iframe>
