@@ -26,15 +26,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             $hour = date('G');
 
             if ($hour > 0 && $hour < 24) {
-                if ($hour >= 3 && $hour <p 12) {
-                    echo '<p>Good Morning, ' . $_SESSION['username'] . '</p>';
+                if ($hour >= 3 && $hour < 12) {
+                    echo 'Good Morning, ' . $_SESSION['username'];
                 } else if ($hour >= 12 && $hour < 17) {
-                    echo '<p>Good afternoon, ' . $_SESSION['username'] . '</p>';
+                    echo 'Good Afternoon, ' . $_SESSION['username'];
                 } else {
-                    echo '<p>Good evening, ' . $_SESSION['username'] . '</p>';
+                    echo 'Good Evening, ' . $_SESSION['username'];
                 }
             } else {
-                echo '<p>Greetings, ' . $_SESSION['username'] . '</p>';
+                echo 'Greetings, ' . $_SESSION['username'];
             }
             ?>
         </h2>
