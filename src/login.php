@@ -1,7 +1,6 @@
 <?php
-include ("includes/connect.php");
-
 session_start();
+include ("includes/connect.php");
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("Location: login.php");

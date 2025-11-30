@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     echo "<div class='flex bg-gray-800 p-3 text-white justify-between sticky top-0 z-10'>
     <div>
     ";
