@@ -19,19 +19,59 @@ This work is published under the terms of <a href="LICENSE"><b>MIT license</b></
 </div>
 
 <div align="center">
-	<img height="500" src="media/codes/ft_split.png">
-	<img height="500" src="media/make.png">
+	<img height="500" src="media/homepage.png">
 </div>
 
 ## Features
 
-- Admin control panel with full content management tools to add, edit, and delete movies.
-- Session-based authentication using native PHP sessions.
-- Visit statistics tracking page views and user interactions.
+### Admin control panel
+
+Full content management tools to add, edit, and delete movies.
+
+<div align="center">
+  <img src="media/dashboard.png" alt="dashboard">
+</div>
+
+### Authentication
+
+Session-based authentication using native PHP sessions.
+
+<div align="center">
+  <img src="media/login.png" alt="login">
+</div>
+
+### Stats
+
+Visit statistics tracking page views and user interactions.
+
 - Self-hosted advertisement system with stored impressions and clicks.
-- Safe deletion workflow requiring the movie title to be typed manually (copy–paste disabled).
-- Voting system using a custom formula based on positive and negative votes.
-- Country and flag API integration for fetching basic country information.
+<div align="center">
+  <img src="media/stats.png" alt="stats">
+</div>
+
+### Safe Deletion
+
+Safe deletion workflow requiring the movie title to be typed manually (copy–paste disabled).
+
+<div align="center">
+  <img src="media/delete.png" alt="eliminar">
+</div>
+
+### Votes
+
+Voting system using a custom formula based on positive and negative votes.
+
+<div align="center">
+  <img src="media/votes.png" alt="votes">
+</div>
+
+### Flags
+
+Country and flag API integration for fetching basic country information.
+
+<div align="center">
+  <img src="media/flags.png" alt="flags">
+</div>
 
 ## Requirements
 
