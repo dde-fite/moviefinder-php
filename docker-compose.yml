@@ -10,6 +10,8 @@ services:
       DB_PASSWORD: ckrbyhrs1cmqx67emsc9dyy803bh9dr31c1cwg16h3btcfj03c
     volumes:
       - public-images:/var/www/html/img
+    depends_on:
+    - mariadb
 
   mariadb:
     image: mariadb
