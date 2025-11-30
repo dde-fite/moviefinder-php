@@ -12,6 +12,15 @@
 This work is published under the terms of <a href="LICENSE"><b>MIT license</b></a>
 </p>
 
+## Live Demo
+
+### URL: [https://moviefinder.projects.defitero.com](https://moviefinder.projects.defitero.com)
+
+### Login Details:
+
+- User: user
+- Password: 1234
+
 <div align="center">
     <h2>Find your next movie + Dashboard & Control Panel</h2>
     <p align="center">Using PHP, MySQL, TailwindCSS, and zero JavaScript, this is my first web programming project. Browse through the movie catalog in an organized and categorized manner. With a control panel that allows you to add new content easily and simply.</p>
