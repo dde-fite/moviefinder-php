@@ -63,8 +63,7 @@ if (isset($_POST["submited"])) {
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         input[type="radio"]:checked + label img {
-            /* Estilos específicos para la imagen cuando el radio button está seleccionado */
-            border: 2px solid cornflowerblue; /* Cambia el color del borde según tus preferencias */
+            border: 2px solid cornflowerblue;
         }
     </style>
 </head>
@@ -199,11 +198,11 @@ if (isset($_POST["submited"])) {
 
                             for ($i=0;$i<count($nameCountries);$i++) {
                                 if ($nameCountries[$i] == $fila["country"]) {
-                                    echo' 
+                                    echo'
                                     <option value="'.$nameCountries[$i].'" selected>'.$nameCountries[$i].'</option>
                                     ';
                                 } else {
-                                    echo' 
+                                    echo'
                                     <option value="'.$nameCountries[$i].'">'.$nameCountries[$i].'</option>
                                 ';
                                 }
@@ -228,7 +227,7 @@ if (isset($_POST["submited"])) {
                     <?php
                         for ($i=1;$i<=5;$i++) {
                             echo '
-                             <div>
+                            <div>
                                 <label class="block text-sm font-medium text-gray-700">Actor '.$i.'</label>
                                 <input
                                     class="p-3 mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-0 text-gray-900"

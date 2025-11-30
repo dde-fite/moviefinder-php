@@ -48,7 +48,6 @@ function updateDB () {
 
     $query = "UPDATE movies SET score = ". $new_score ." WHERE id = ".$id_pelicula;
     mysqli_query($enlace,$query);
-    
 }
 
 mysqli_close($enlace);

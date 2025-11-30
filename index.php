@@ -9,8 +9,7 @@ include("includes/visit.php")
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         input[type="radio"]:checked + label img {
-            /* Estilos específicos para la imagen cuando el radio button está seleccionado */
-            border: 2px solid cornflowerblue; /* Cambia el color del borde según tus preferencias */
+            border: 2px solid cornflowerblue;
         }
     </style>
 </head>
