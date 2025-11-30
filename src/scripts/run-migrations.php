@@ -118,7 +118,7 @@ if ($res && $res->num_rows === 0) {
 
 $res = $mysqli->query("SELECT id FROM ads LIMIT 1");
 if ($res && $res->num_rows === 0) {
-    $mysqli->query("INSERT INTO ads (adname,url,clicks) VALUES ('Patrocinado Ejemplo','ads/example.jpg',0)");
+    $mysqli->query("INSERT INTO ads (adname,url,clicks) VALUES ('Patrocinado Ejemplo','example.jpg',0)");
 }
 
 $res = $mysqli->query("SELECT id FROM movies LIMIT 1");

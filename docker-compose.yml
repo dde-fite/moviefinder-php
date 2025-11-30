@@ -14,7 +14,7 @@ services:
   mariadb:
     image: mariadb
     environment:
-      MARIADB_ROOT_PASSWORD: root_password
+      MARIADB_ROOT_PASSWORD: qd2993tem4py2hqwbwd4ncr62pfw2kng402xdac5336v9sdsdq
       MARIADB_DATABASE: moviefinder
       MARIADB_USER: dbuser
       MARIADB_PASSWORD: ckrbyhrs1cmqx67emsc9dyy803bh9dr31c1cwg16h3btcfj03c
