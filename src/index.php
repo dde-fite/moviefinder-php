@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/visit.php")
+include ('includes/visit.php')
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,7 +16,7 @@ include("includes/visit.php")
 </head>
 <body>
 <?php
-include ("includes/adminbar.php")
+include ('includes/adminbar.php')
 ?>
 <main class="min-h-screen bg-gray-100">
     <header class="bg-white shadow-sm py-4 px-6">
@@ -102,11 +102,11 @@ include ("includes/adminbar.php")
                     >
 
                         <?php
-                        include ("includes/connect.php");
+                        include ('includes/connect.php');
 
-                        if (isset($_GET["category"])) {
-                            if ($_GET["category"] == "") {
-                                unset($_GET["category"]);
+                        if (isset($_GET['category'])) {
+                            if ($_GET['category'] == '') {
+                                unset($_GET['category']);
                                 echo '<option value="" selected>
                                     <span style="pointer-events: none;">Select a category</span>
                                     <svg
@@ -125,9 +125,8 @@ include ("includes/adminbar.php")
                                     <path d="m6 9 6 6 6-6"></path>
                                     </svg>
                                 </option>';
-                            }
-                            else {
-                                $category = $_GET["category"];
+                            } else {
+                                $category = $_GET['category'];
                                 echo '<option value="">
                                     <span style="pointer-events: none;">Select a category</span>
                                     <svg
@@ -168,23 +167,21 @@ include ("includes/adminbar.php")
                                 </option>';
                         }
 
+                        $query = 'SELECT DISTINCT genre FROM movies ORDER BY genre';
 
-                        $query = "SELECT DISTINCT genre FROM movies ORDER BY genre";
-
-                        if($result = mysqli_query($enlace, $query)) {
+                        if ($result = mysqli_query($enlace, $query)) {
                             while ($fila = mysqli_fetch_array($result)) {
-                                if ($fila["genre"] == $category) {
+                                if ($fila['genre'] == $category) {
                                     echo '
-                                        <option value="'. $fila["genre"] .'" selected>' . ucwords($fila["genre"]) .'</option>
+                                        <option value="' . $fila['genre'] . '" selected>' . ucwords($fila['genre']) . '</option>
                                     ';
                                 } else {
                                     echo '
-                                        <option value="'. $fila["genre"] .'">' . ucwords($fila["genre"]) . '</option>
+                                        <option value="' . $fila['genre'] . '">' . ucwords($fila['genre']) . '</option>
                                     ';
                                 }
                             }
                         }
-
 
                         ?>
 
@@ -197,7 +194,7 @@ include ("includes/adminbar.php")
                     <input
                         <?php
 
-                        echo'
+                        echo '
                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="year"
                         placeholder="Enter a year"
@@ -205,12 +202,12 @@ include ("includes/adminbar.php")
                         name="year" 
                         ';
 
-                        if (isset($_GET["year"])) {
-                            if ($_GET["year"] == "") {
-                                unset($_GET["year"]);
+                        if (isset($_GET['year'])) {
+                            if ($_GET['year'] == '') {
+                                unset($_GET['year']);
                             } else {
-                                $year = $_GET["year"];
-                                echo 'value="'.$year.'"';
+                                $year = $_GET['year'];
+                                echo 'value="' . $year . '"';
                             }
                         }
                         ?>
@@ -238,87 +235,85 @@ include ("includes/adminbar.php")
                     // Decodificar el JSON en un array asociativo
                     $data_array = json_decode($json_data, true);
 
+                    $query = 'SELECT DISTINCT country FROM movies ORDER BY country';
 
-
-                    $query = "SELECT DISTINCT country FROM movies ORDER BY country";
-
-                    if (isset($_GET["country"])) {
-                        if ($_GET["country"] == "") {
-                            unset($_GET["country"]);
+                    if (isset($_GET['country'])) {
+                        if ($_GET['country'] == '') {
+                            unset($_GET['country']);
                         } else {
-                        $country = $_GET["country"];
+                            $country = $_GET['country'];
                         }
                     }
 
-                    if($result = mysqli_query($enlace, $query)) {
+                    if ($result = mysqli_query($enlace, $query)) {
                         while ($fila = mysqli_fetch_array($result)) {
                             // Nombre del país que quieres buscar
-                            $nombre_pais = $fila["country"]; // Puedes cambiarlo al país que desees
+                            $nombre_pais = $fila['country'];  // Puedes cambiarlo al país que desees
 
                             // Buscar el código del país en el array
                             foreach ($data_array as $codigo => $nombre) {
                                 if ($nombre == $nombre_pais) {
-                                    break; // Terminar el bucle una vez que se encuentra el país
+                                    break;  // Terminar el bucle una vez que se encuentra el país
                                 }
                             }
 
                             if (isset($country)) {
-                                if ($fila["country"] == $country) {
+                                if ($fila['country'] == $country) {
                                     echo '
                                         <div class="p-3">
-                                            <input type="radio" name="country" value="' .$fila["country"]. '" id="' .$codigo. '" class="absolute opacity-0 w-0 h-0" checked="checked">
-                                            <label for="' .$codigo. '">
+                                            <input type="radio" name="country" value="' . $fila['country'] . '" id="' . $codigo . '" class="absolute opacity-0 w-0 h-0" checked="checked">
+                                            <label for="' . $codigo . '">
                                             <img
-                                            src="https://flagcdn.com/64x48/' .$codigo. '.png"
-                                            srcset="https://flagcdn.com/128x96/' .$codigo. '.png 2x,
-                                            https://flagcdn.com/192x144/' .$codigo. '.png 3x"
+                                            src="https://flagcdn.com/64x48/' . $codigo . '.png"
+                                            srcset="https://flagcdn.com/128x96/' . $codigo . '.png 2x,
+                                            https://flagcdn.com/192x144/' . $codigo . '.png 3x"
                                             
                                             width="36"
                                             height="27"
                                             
-                                            alt="'.$nombre_pais.'"
-                                            title="'.$nombre_pais.'"
+                                            alt="' . $nombre_pais . '"
+                                            title="' . $nombre_pais . '"
                                             
                                             class="cursor-pointer pais-select">
                                             </label>
                                         </div>
                                     ';
-                                    } else {
-                                        echo '
+                                } else {
+                                    echo '
                                             <div class="p-3">
-                                                <input type="radio" name="country" value="' .$fila["country"]. '" id="' .$codigo. '" class="absolute opacity-0 w-0 h-0">
-                                                <label for="' .$codigo. '">
+                                                <input type="radio" name="country" value="' . $fila['country'] . '" id="' . $codigo . '" class="absolute opacity-0 w-0 h-0">
+                                                <label for="' . $codigo . '">
                                                 
                                                 <img
-                                                src="https://flagcdn.com/64x48/' .$codigo. '.png"
-                                                srcset="https://flagcdn.com/128x96/' .$codigo. '.png 2x,
-                                                https://flagcdn.com/192x144/' .$codigo. '.png 3x"
+                                                src="https://flagcdn.com/64x48/' . $codigo . '.png"
+                                                srcset="https://flagcdn.com/128x96/' . $codigo . '.png 2x,
+                                                https://flagcdn.com/192x144/' . $codigo . '.png 3x"
                                             
                                                 width="36"
                                                 height="27"
                                             
-                                                alt="'.$nombre_pais.'"
-                                                title="'.$nombre_pais.'"
+                                                alt="' . $nombre_pais . '"
+                                                title="' . $nombre_pais . '"
                                             
                                                 class="cursor-pointer pais-select">
                                             </label>
                                             </div>
                                         ';
-                                    }
+                                }
                             } else {
                                 echo '
                                             <div class="p-3">
-                                                <input type="radio" name="country" value="' .$fila["country"]. '" id="' .$codigo. '" class="absolute opacity-0 w-0 h-0">
-                                                <label for="' .$codigo. '"><img
-                                            src="https://flagcdn.com/64x48/' .$codigo. '.png"
-                                            srcset="https://flagcdn.com/128x96/' .$codigo. '.png 2x,
-                                            https://flagcdn.com/192x144/' .$codigo. '.png 3x"
+                                                <input type="radio" name="country" value="' . $fila['country'] . '" id="' . $codigo . '" class="absolute opacity-0 w-0 h-0">
+                                                <label for="' . $codigo . '"><img
+                                            src="https://flagcdn.com/64x48/' . $codigo . '.png"
+                                            srcset="https://flagcdn.com/128x96/' . $codigo . '.png 2x,
+                                            https://flagcdn.com/192x144/' . $codigo . '.png 3x"
                                             
                                             width="36"
                                             height="27"
                                             
-                                            alt="'.$nombre_pais.'"
-                                            title="'.$nombre_pais.'"
+                                            alt="' . $nombre_pais . '"
+                                            title="' . $nombre_pais . '"
                                             
                                             class="cursor-pointer pais-select"></label>
                                             </div>
@@ -340,42 +335,41 @@ include ("includes/adminbar.php")
                             <label for="none-age"><img style="height:27px;"  src="img/redcross.png" class="cursor-pointer pais-select"></label>
                         </div>
                         <?php
-                        $avAges = [0,7,12,16,18];
+                        $avAges = [0, 7, 12, 16, 18];
 
-                        if (isset($_GET["age"])) {
-                            if ($_GET["age"] == "") {
-                                unset($_GET["age"]);
+                        if (isset($_GET['age'])) {
+                            if ($_GET['age'] == '') {
+                                unset($_GET['age']);
                             } else {
-                                $age = $_GET["age"];
+                                $age = $_GET['age'];
                             }
                         }
 
-                        for ($i=0;$i<count($avAges);$i++) {
-                            if(isset($age)) {
+                        for ($i = 0; $i < count($avAges); $i++) {
+                            if (isset($age)) {
                                 if ($avAges[$i] == $age) {
                                     echo '
                                     <div class="p-1">
-                                        <input type="radio" name="age" value="'.$avAges[$i].'" id="'.$avAges[$i].'-age" class="absolute opacity-0 w-0 h-0" checked="checked">
-                                        <label for="'.$avAges[$i].'-age"><img style="height:27px;"  src="img/edad-'.$avAges[$i].'.png" class="cursor-pointer pais-select"></label>
+                                        <input type="radio" name="age" value="' . $avAges[$i] . '" id="' . $avAges[$i] . '-age" class="absolute opacity-0 w-0 h-0" checked="checked">
+                                        <label for="' . $avAges[$i] . '-age"><img style="height:27px;"  src="img/edad-' . $avAges[$i] . '.png" class="cursor-pointer pais-select"></label>
                                     </div>
                                     ';
                                 } else {
                                     echo '
                                     <div class="p-1">
-                                        <input type="radio" name="age" value="'.$avAges[$i].'" id="'.$avAges[$i].'-age" class="absolute opacity-0 w-0 h-0">
-                                        <label for="'.$avAges[$i].'-age"><img style="height:27px;"  src="img/edad-'.$avAges[$i].'.png" class="cursor-pointer pais-select"></label>
+                                        <input type="radio" name="age" value="' . $avAges[$i] . '" id="' . $avAges[$i] . '-age" class="absolute opacity-0 w-0 h-0">
+                                        <label for="' . $avAges[$i] . '-age"><img style="height:27px;"  src="img/edad-' . $avAges[$i] . '.png" class="cursor-pointer pais-select"></label>
                                     </div>
                                 ';
                                 }
                             } else {
                                 echo '
                                     <div class="p-1">
-                                        <input type="radio" name="age" value="'.$avAges[$i].'" id="'.$avAges[$i].'-age" class="absolute opacity-0 w-0 h-0">
-                                        <label for="'.$avAges[$i].'-age"><img style="height:27px;"  src="img/edad-'.$avAges[$i].'.png" class="cursor-pointer pais-select"></label>
+                                        <input type="radio" name="age" value="' . $avAges[$i] . '" id="' . $avAges[$i] . '-age" class="absolute opacity-0 w-0 h-0">
+                                        <label for="' . $avAges[$i] . '-age"><img style="height:27px;"  src="img/edad-' . $avAges[$i] . '.png" class="cursor-pointer pais-select"></label>
                                     </div>
                                 ';
                             }
-
                         }
                         ?>
                     </div>
@@ -386,23 +380,23 @@ include ("includes/adminbar.php")
             </div>
             <div class="grid gap-6 md:gap-8">
                 <?php
-                if (isset($_GET["search"])) {
-                    $search = $_GET["search"];
-                    echo '<h2 class="text-2xl font-semibold">Resultados para: '.$search.'</h2>';
+                if (isset($_GET['search'])) {
+                    $search = $_GET['search'];
+                    echo '<h2 class="text-2xl font-semibold">Resultados para: ' . $search . '</h2>';
                 }
 
-                if (isset($_GET["votes"])) {
-                    $votes = $_GET["votes"];
+                if (isset($_GET['votes'])) {
+                    $votes = $_GET['votes'];
                     if ($votes == TRUE) {
                         echo '<h2 class="text-2xl font-semibold">Las Peliculas Mas Votadas</h2>';
                     }
-                } elseif (isset($_GET["yrtitle"])) {
-                    $yearTitle = $_GET["yrtitle"];
+                } elseif (isset($_GET['yrtitle'])) {
+                    $yearTitle = $_GET['yrtitle'];
                     if ($yearTitle) {
                         echo '<h2 class="text-2xl font-semibold">Las Peliculas del 2023</h2>';
                     }
-                } elseif (isset($_GET["last"])) {
-                    $last = $_GET["last"];
+                } elseif (isset($_GET['last'])) {
+                    $last = $_GET['last'];
                     if ($last == TRUE) {
                         echo '<h2 class="text-2xl font-semibold">Las Ultimas Peliculas</h2>';
                     }
@@ -411,90 +405,85 @@ include ("includes/adminbar.php")
                 <div class="grid lg:grid-cols-3 gap-8">
                     <?php
 
-                    $queryFilters = "WHERE TRUE";
+                    $queryFilters = 'WHERE TRUE';
 
                     if (isset($search)) {
-                        $queryFilters = "WHERE CONCAT_WS(title,genre,year,director,actor1,actor2,actor3,actor4,actor5) LIKE '%".$search."%'";
+                        $queryFilters = "WHERE CONCAT_WS(title,genre,year,director,actor1,actor2,actor3,actor4,actor5) LIKE '%" . $search . "%'";
                     } else {
-                        $queryFilters = "WHERE TRUE";
+                        $queryFilters = 'WHERE TRUE';
                     }
 
-                    if (isset($category))
-                    {
-                        $queryFilters = $queryFilters . " AND genre = '".$category."'";
+                    if (isset($category)) {
+                        $queryFilters = $queryFilters . " AND genre = '" . $category . "'";
                     }
-                    if (isset($year))
-                    {
-                        $queryFilters = $queryFilters . " AND year = '".$year."'";
+                    if (isset($year)) {
+                        $queryFilters = $queryFilters . " AND year = '" . $year . "'";
                     }
-                    if (isset($country))
-                    {
-                        $queryFilters = $queryFilters . " AND country = '".$country."'";
+                    if (isset($country)) {
+                        $queryFilters = $queryFilters . " AND country = '" . $country . "'";
                     }
-                    if (isset($age))
-                    {
-                        $queryFilters = $queryFilters . " AND age <= '".$age."'";
+                    if (isset($age)) {
+                        $queryFilters = $queryFilters . " AND age <= '" . $age . "'";
                     }
-                    if (isset($_GET["actor"])) {
-                        $actor = $_GET["actor"];
-                        $queryFilters = $queryFilters . " AND actor1 = '".$actor."' OR actor2 = '".$actor."' OR actor3 = '".$actor."' OR actor4 = '".$actor."' OR actor5 = '".$actor."'";
+                    if (isset($_GET['actor'])) {
+                        $actor        = $_GET['actor'];
+                        $queryFilters = $queryFilters . " AND actor1 = '" . $actor . "' OR actor2 = '" . $actor . "' OR actor3 = '" . $actor . "' OR actor4 = '" . $actor . "' OR actor5 = '" . $actor . "'";
                     }
 
-                    if (isset($_GET["director"])) {
-                        $director = $_GET["director"];
-                        $queryFilters = $queryFilters . " AND director = '".$director."'";
+                    if (isset($_GET['director'])) {
+                        $director     = $_GET['director'];
+                        $queryFilters = $queryFilters . " AND director = '" . $director . "'";
                     }
 
                     if (isset($votes)) {
-                        if($votes == TRUE) {
-                            $queryFilters = $queryFilters . " ORDER BY score DESC";
+                        if ($votes == TRUE) {
+                            $queryFilters = $queryFilters . ' ORDER BY score DESC';
                         }
                     } elseif (isset($last)) {
-                        if($last == TRUE) {
-                            $queryFilters = $queryFilters . " ORDER BY year DESC";
+                        if ($last == TRUE) {
+                            $queryFilters = $queryFilters . ' ORDER BY year DESC';
                         }
                     }
-                    $query = "SELECT * FROM movies " . $queryFilters;
-
+                    $query = 'SELECT * FROM movies ' . $queryFilters;
 
                     $numFilm = 0;
-                    $rndID = 0;
+                    $rndID   = 0;
 
-                    if($result = mysqli_query($enlace, $query)) {
+                    if ($result = mysqli_query($enlace, $query)) {
                         while ($fila = mysqli_fetch_array($result)) {
-                            if ($numFilm >= random_int(6,12)) {
-                                $queryAd = "SELECT * FROM ads";
+                            if ($numFilm >= random_int(6, 12)) {
+                                $queryAd = 'SELECT * FROM ads';
 
-                                if($resultAd = mysqli_query($enlace, $queryAd)) {
-                                    $rowcount = mysqli_num_rows( $resultAd );
+                                if ($resultAd = mysqli_query($enlace, $queryAd)) {
+                                    $rowcount = mysqli_num_rows($resultAd);
 
                                     $prevRndID = $rndID;
-                                    $rndID = random_int(0,$rowcount);
+                                    $rndID     = random_int(0, $rowcount);
                                     while ($rndID == $prevRndID) {
-                                        $rndID = random_int(0,$rowcount);
+                                        $rndID = random_int(0, $rowcount);
                                     }
                                 } else {
                                     $rowcount = 0;
-                                    $rndID = 0;
+                                    $rndID    = 0;
                                 }
 
-                                $queryAd = "SELECT * FROM ads WHERE id='".$rndID."'";
-                                if($resultAd = mysqli_query($enlace, $queryAd)) {
+                                $queryAd = "SELECT * FROM ads WHERE id='" . $rndID . "'";
+                                if ($resultAd = mysqli_query($enlace, $queryAd)) {
                                     while ($filaAd = mysqli_fetch_array($resultAd)) {
                                         echo '
                                 <div class="grid gap-6 relative group">
-                                    <a class="absolute inset-0 z-10" href="adview.php?ad='.$filaAd['id'].'&redirect='.$_SERVER["REQUEST_URI"].'">
+                                    <a class="absolute inset-0 z-10" href="adview.php?ad=' . $filaAd['id'] . '&redirect=' . $_SERVER['REQUEST_URI'] . '">
                                         <span class="sr-only">View</span>
                                     </a>
                                     <img
-                                        src="img/ads/'.$filaAd["url"].'"
-                                        alt="Patrocinado '.$filaAd["adname"].'"
+                                        src="img/ads/' . $filaAd['url'] . '"
+                                        alt="Patrocinado ' . $filaAd['adname'] . '"
                                         width="450"
                                         height="600"
                                         class="rounded-lg object-cover w-full aspect-[3/4] group-hover:opacity-50 transition-opacity"
                                     />
                                     <div class="grid gap-1">
-                                        <h3 class="font-semibold">'.$filaAd["adname"].'</h3>
+                                        <h3 class="font-semibold">' . $filaAd['adname'] . '</h3>
                                         <p class="text-sm leading-none">Patrocinado</p>
                                     </div>
                                 </div>
@@ -505,19 +494,19 @@ include ("includes/adminbar.php")
                             }
                             echo '
                                 <div class="grid gap-6 relative group">
-                                    <a class="absolute inset-0 z-10" href="details.php?id='.$fila["id"].'">
+                                    <a class="absolute inset-0 z-10" href="details.php?id=' . $fila['id'] . '">
                                         <span class="sr-only">View</span>
                                     </a>
                                     <img
-                                        src="img/'.$fila["photo"].'"
-                                        alt="Imagen de Pelicula '.$fila["title"].'"
+                                        src="img/' . $fila['photo'] . '"
+                                        alt="Imagen de Pelicula ' . $fila['title'] . '"
                                         width="450"
                                         height="600"
                                         class="rounded-lg object-cover w-full aspect-[3/4] group-hover:opacity-50 transition-opacity"
                                     />
                                     <div class="grid gap-1">
-                                        <h3 class="font-semibold">'.$fila["title"].' - '.$fila["year"].'</h3>
-                                        <p class="text-sm leading-none">Average Rating: '.$fila["score"].'</p>
+                                        <h3 class="font-semibold">' . $fila['title'] . ' - ' . $fila['year'] . '</h3>
+                                        <p class="text-sm leading-none">Average Rating: ' . $fila['score'] . '</p>
                                     </div>
                                 </div>
                             ';

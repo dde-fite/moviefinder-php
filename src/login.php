@@ -1,32 +1,31 @@
 <?php
 session_start();
-include ("includes/connect.php");
+include ('includes/connect.php');
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    header("Location: login.php");
+    header('Location: login.php');
     exit;
 }
 
-if (isset($_POST["form"])) {
-    if(isset($_POST["username"]) && isset($_POST["password"]) && $_POST["username"] != "" && $_POST["password"] != "") {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+if (isset($_POST['form'])) {
+    if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username'] != '' && $_POST['password'] != '') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-        $query = "SELECT * FROM users WHERE username = '".$username."'";
+        $query = "SELECT * FROM users WHERE username = '" . $username . "'";
 
-        if($result = mysqli_query($enlace, $query)) {
+        if ($result = mysqli_query($enlace, $query)) {
             $fila = mysqli_fetch_array($result);
             if ($username == $fila['username'] && $password == $fila['password']) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                header("Location: dashboard.php");
+                header('Location: dashboard.php');
                 exit;
             }
-
         }
     }
 
-mysqli_close($enlace);
+    mysqli_close($enlace);
 }
 
 ?>

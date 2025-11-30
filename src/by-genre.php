@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/visit.php")
+include ('includes/visit.php')
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +17,7 @@ include("includes/visit.php")
 </head>
 <body>
 <?php
-include ("includes/adminbar.php")
+include ('includes/adminbar.php')
 ?>
 <main class="min-h-screen bg-gray-100">
     <header class="bg-white shadow-sm py-4 px-6">
@@ -83,16 +83,16 @@ include ("includes/adminbar.php")
                 <h2 class="text-2xl font-semibold">Movies by Genre</h2>
                 <div class="gap-20">
                     <?php
-                    include ("includes/connect.php");
+                    include ('includes/connect.php');
 
-                    $query = "SELECT DISTINCT genre FROM movies ORDER BY genre";
+                    $query = 'SELECT DISTINCT genre FROM movies ORDER BY genre';
 
-                    if($result = mysqli_query($enlace, $query)) {
+                    if ($result = mysqli_query($enlace, $query)) {
                         while ($fila = mysqli_fetch_array($result)) {
                             echo '
                                 <div class="relative group">
-                                    <a class="text-base text-gray-900" href="index.php?category='.$fila["genre"].'">
-                                        '.$fila["genre"].'
+                                    <a class="text-base text-gray-900" href="index.php?category=' . $fila['genre'] . '">
+                                        ' . $fila['genre'] . '
                                     </a>
                                 </div>
                             ';
